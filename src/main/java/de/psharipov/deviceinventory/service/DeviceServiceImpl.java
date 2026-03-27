@@ -41,15 +41,13 @@ public class DeviceServiceImpl implements DeviceService {
 
     @Override
     public DeviceResponse findById(Long id) {
-        Device device = deviceRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Device not found with id " + id));
+        Device device = getDeviceOrThrow(id);
         return DeviceMapper.toResponse(device);
     }
 
     @Override
     public DeviceResponse update(Long id, DeviceRequest request) {
-        Device device = deviceRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Device not found with id " + id));
+        Device device = getDeviceOrThrow(id);
         if (!device.getIpv4Address().equals(request.ipv4Address())
                 && deviceRepository.existsByIpv4Address(request.ipv4Address())) {
             throw new DuplicateResourceException("IPv4 address already exists");
@@ -73,11 +71,8 @@ public class DeviceServiceImpl implements DeviceService {
 
     @Override
     public void delete(Long id) {
-        if (!deviceRepository.existsById(id)) {
-            throw new EntityNotFoundException("Device not found with id " + id);
-        }
-
-        deviceRepository.deleteById(id);
+        Device device = getDeviceOrThrow(id);
+        deviceRepository.delete(device);
     }
 
     private void checkDuplicateIp(DeviceRequest request) {
@@ -88,6 +83,11 @@ public class DeviceServiceImpl implements DeviceService {
         if (deviceRepository.existsByIpv6Address(request.ipv6Address())) {
             throw new DuplicateResourceException("IPv6 address already exists");
         }
+    }
+
+    private Device getDeviceOrThrow(Long id) {
+        return deviceRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Device not found with id " + id));
     }
 
 }
