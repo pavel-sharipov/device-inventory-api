@@ -1,0 +1,9 @@
+CREATE TABLE devices (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    hostname VARCHAR(100) NOT NULL,
+    ipv4_address VARCHAR(15) NOT NULL UNIQUE,
+    ipv6_address VARCHAR(45) NOT NULL UNIQUE,
+    status VARCHAR(20) NOT NULL,
+    owner VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP NOT NULL
+);
