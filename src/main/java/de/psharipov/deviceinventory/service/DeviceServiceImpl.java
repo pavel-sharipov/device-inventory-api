@@ -4,6 +4,7 @@ package de.psharipov.deviceinventory.service;
 import de.psharipov.deviceinventory.dto.DeviceRequest;
 import de.psharipov.deviceinventory.dto.DeviceResponse;
 import de.psharipov.deviceinventory.entity.Device;
+import de.psharipov.deviceinventory.exception.DuplicateResourceException;
 import de.psharipov.deviceinventory.mapper.DeviceMapper;
 import de.psharipov.deviceinventory.repository.DeviceRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -51,12 +52,12 @@ public class DeviceServiceImpl implements DeviceService {
                 .orElseThrow(() -> new EntityNotFoundException("Device not found with id " + id));
         if (!device.getIpv4Address().equals(request.ipv4Address())
                 && deviceRepository.existsByIpv4Address(request.ipv4Address())) {
-            throw new IllegalArgumentException("IPv4 address already exists");
+            throw new DuplicateResourceException("IPv4 address already exists");
         }
 
         if (!device.getIpv6Address().equals(request.ipv6Address())
                 && deviceRepository.existsByIpv6Address(request.ipv6Address())) {
-            throw new IllegalArgumentException("IPv6 address already exists");
+            throw new DuplicateResourceException("IPv6 address already exists");
         }
 
         device.updateHostname(request.hostname());
@@ -81,11 +82,11 @@ public class DeviceServiceImpl implements DeviceService {
 
     private void checkDuplicateIp(DeviceRequest request) {
         if (deviceRepository.existsByIpv4Address(request.ipv4Address())) {
-            throw new IllegalArgumentException("IPv4 address already exists");
+            throw new DuplicateResourceException("IPv4 address already exists");
         }
 
         if (deviceRepository.existsByIpv6Address(request.ipv6Address())) {
-            throw new IllegalArgumentException("IPv6 address already exists");
+            throw new DuplicateResourceException("IPv6 address already exists");
         }
     }
 
