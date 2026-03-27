@@ -17,23 +17,23 @@ public class Device {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 100)
+    @Column(name = "hostname", nullable = false, length = 100)
     private String hostname;
 
-    @Column(unique = true, length = 15)
+    @Column(name = "ipv4_address", nullable = false, unique = true, length = 15)
     private String ipv4Address;
 
-    @Column(unique = true, length = 45)
+    @Column(name = "ipv6_address", nullable = false, unique = true, length = 45)
     private String ipv6Address;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
+    @Column(name = "status", nullable = false, length = 20)
     private DeviceStatus status;
 
-    @Column(nullable = false, length = 100)
+    @Column(name = "owner", nullable = false, length = 100)
     private String owner;
 
-    @Column(nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @PrePersist
