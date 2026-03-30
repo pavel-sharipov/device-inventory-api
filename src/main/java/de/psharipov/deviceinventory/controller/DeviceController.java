@@ -2,9 +2,13 @@ package de.psharipov.deviceinventory.controller;
 
 import de.psharipov.deviceinventory.dto.DeviceRequest;
 import de.psharipov.deviceinventory.dto.DeviceResponse;
+import de.psharipov.deviceinventory.entity.DeviceStatus;
 import de.psharipov.deviceinventory.service.DeviceService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -29,8 +33,11 @@ public class DeviceController {
 
     @GetMapping
     @Operation(summary = "Get all devices")
-    public List<DeviceResponse> findAll() {
-        return deviceService.findAll();
+    public Page<DeviceResponse> findAll(
+            @RequestParam(required = false) DeviceStatus status,
+            @ParameterObject Pageable pageable) {
+
+        return deviceService.findAll(status, pageable);
     }
 
 

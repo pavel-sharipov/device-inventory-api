@@ -4,11 +4,14 @@ package de.psharipov.deviceinventory.service;
 import de.psharipov.deviceinventory.dto.DeviceRequest;
 import de.psharipov.deviceinventory.dto.DeviceResponse;
 import de.psharipov.deviceinventory.entity.Device;
+import de.psharipov.deviceinventory.entity.DeviceStatus;
 import de.psharipov.deviceinventory.exception.DuplicateResourceException;
 import de.psharipov.deviceinventory.mapper.DeviceMapper;
 import de.psharipov.deviceinventory.repository.DeviceRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,12 +34,15 @@ public class DeviceServiceImpl implements DeviceService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<DeviceResponse> findAll() {
-        return deviceRepository.findAll()
-                .stream()
-                .map(DeviceMapper::toResponse)
-                .toList();
+    public Page<DeviceResponse> findAll(DeviceStatus status, Pageable pageable) {
 
+        if (status != null) {
+            return deviceRepository.findByStatus(status, pageable)
+                    .map(DeviceMapper::toResponse);
+        }
+
+        return deviceRepository.findAll(pageable)
+                .map(DeviceMapper::toResponse);
     }
 
     @Override
