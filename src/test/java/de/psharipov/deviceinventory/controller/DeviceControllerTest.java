@@ -10,16 +10,20 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
+
 
 import java.time.LocalDateTime;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 
 @WebMvcTest(controllers = DeviceController.class)
 class DeviceControllerTest {
@@ -34,6 +38,7 @@ class DeviceControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
+    @WithMockUser(roles = "ADMIN")
     void shouldCreateDevice() throws Exception {
 
         DeviceRequest request = new DeviceRequest(
@@ -57,6 +62,7 @@ class DeviceControllerTest {
         when(deviceService.create(any())).thenReturn(response);
 
         mockMvc.perform(post("/api/v1/devices")
+                        .with(csrf())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isCreated())
@@ -64,6 +70,7 @@ class DeviceControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = "ADMIN")
     void shouldReturnBadRequestForInvalidIPv4() throws Exception {
 
         DeviceRequest request = new DeviceRequest(
@@ -75,12 +82,14 @@ class DeviceControllerTest {
         );
 
         mockMvc.perform(post("/api/v1/devices")
+                .with(csrf())
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
+    @WithMockUser(roles = "VIEWER")
     void shouldReturnNotFoundWhenDeviceDoesNotExist() throws Exception {
 
         when(deviceService.findById(999L))
