@@ -1,9 +1,6 @@
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/deviceinventory
-    username: postgres
-    password: postgres
-    driver-class-name: org.postgresql.Driver
+  profiles:
+    active: dev
 
   jpa:
     open-in-view: false
@@ -13,5 +10,3 @@ spring:
   flyway:
     enabled: true
     baseline-on-migrate: true
-
-
