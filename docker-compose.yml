@@ -2,12 +2,11 @@ services:
   postgres:
     image: postgres:16
     container_name: deviceinventory-postgres
+    restart: unless-stopped
     environment:
       POSTGRES_DB: deviceinventory
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-    ports:
-      - "5432:5432"
+      POSTGRES_PASSWORD: strongpostgrespassword
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -19,11 +18,13 @@ services:
   app:
     build: .
     container_name: deviceinventory-app
+    restart: unless-stopped
     depends_on:
       postgres:
         condition: service_healthy
     environment:
       SPRING_PROFILES_ACTIVE: docker
+      ADMIN_PASSWORD: strongadminpassword
     ports:
       - "8080:8080"
 
