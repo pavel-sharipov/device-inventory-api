@@ -1,6 +1,7 @@
 # Device Inventory API
 
 ![Build](https://github.com/pavel-sharipov/device-inventory-api/actions/workflows/ci.yml/badge.svg?branch=main)
+![Deploy](https://github.com/pavel-sharipov/device-inventory-api/actions/workflows/deploy.yml/badge.svg)
 ![Java](https://img.shields.io/badge/Java-21-blue)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-brightgreen)
 
@@ -8,18 +9,18 @@
 
 - Swagger UI: https://api.psharipov.de/swagger-ui/index.html
 - Health: https://api.psharipov.de/actuator/health
-- Production API Endpoint (HTTP Basic Auth required): https://api.psharipov.de/api/v1/devices
+- Protected API Endpoint (HTTP Basic Auth required): https://api.psharipov.de/api/v1/devices
 
 ## Repository Highlights
 
 - Produktionsnah auf VPS deployt
 - Containerisiert mit Docker (Spring Boot + PostgreSQL)
 - Reverse Proxy via HTTPS
-- CI mit GitHub Actions automatisiert
+- Continuous Integration und automatisiertes Deployment mit GitHub Actions auf VPS
 
 ## Kurzbeschreibung
 
-REST-Backend zur Verwaltung von Netzwerkgeräten in einer IT-/Infrastruktur-Umgebung. Die API stellt CRUD-Endpunkte für Geräte bereit, validiert technische Eingaben (IPv4/IPv6), nutzt datenbankgestützte Migrationen und ist rollenbasiert abgesichert (Viewer/Admin). Das Projekt ist als technisches Demo-Projekt für ein Bewerbungsportfolio ausgelegt und orientiert sich an produktionsnahen Standards (Docker, PostgreSQL, Flyway, CI, Health Checks).
+REST-Backend zur Verwaltung von Netzwerkgeräten in einer IT-/Infrastruktur-Umgebung. Die API stellt CRUD-Endpunkte für Geräte bereit, validiert technische Eingaben (IPv4/IPv6), nutzt datenbankgestützte Migrationen und ist rollenbasiert abgesichert (Viewer/Admin). Das Projekt dient als technisches Portfolio-Projekt für ein Bewerbungsportfolio ausgelegt und orientiert sich an produktionsnahen Standards (Docker, PostgreSQL, Flyway, CI, Health Checks).
 
 ## Projektübersicht
 
@@ -145,9 +146,9 @@ In IT-Betrieb/Netzwerkbetrieb müssen Geräteinventare nachvollziehbar gepflegt 
 - Der Spring-Boot-Service ist nur lokal gebunden (`127.0.0.1:8080`) und nicht direkt öffentlich erreichbar
 - UFW erlaubt ausschließlich Ports `22`, `80` und `443`
 - Fail2ban schützt SSH vor Brute-Force-Angriffen
-- Additional HTTP security headers configured via Nginx
-- Rate limiting enabled against request flooding
-- TLS restricted to modern protocols (TLS 1.2 / 1.3)
+- Zusätzliche HTTP-Sicherheitsheader über Nginx konfiguriert
+- Rate Limiting zum Schutz vor Request Flooding aktiviert
+- TLS auf moderne Protokolle beschränkt (TLS 1.2 / 1.3)
 
 **Profile (dev / docker / prod)**
 - **Standardprofil (`application.yml`)**: Basiskonfiguration (Flyway aktiv, Actuator Exposure, Security-Properties)
@@ -289,6 +290,7 @@ target/site/jacoco/index.html
 - Workflow wird auf `push` und `pull_request` gegen `main` ausgeführt.
 - Schritte: Checkout → Java 21 Setup → Maven Wrapper → `./mvnw clean verify`
 - Ziel: reproduzierbarer Build inkl. Testausführung in einer frischen Runner-Umgebung.
+- Deployment erfolgt automatisch nur nach erfolgreichem CI-Lauf auf die VPS-Umgebung.
 
 ## Projektstatus und Bewerbungskontext
 
