@@ -2,5 +2,5 @@ spring:
   datasource:
     url: jdbc:postgresql://postgres:5432/deviceinventory
     username: postgres
-    password: strongpostgrespassword
+    password: ${POSTGRES_PASSWORD}
     driver-class-name: org.postgresql.Driver

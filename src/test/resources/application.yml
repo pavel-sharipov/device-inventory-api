@@ -14,7 +14,7 @@ spring:
 
 app:
   security:
-    viewer-user: viewer
-    viewer-password: viewer123
-    admin-user: admin
-    admin-password: admin123
+    viewer-user: ${TEST_VIEWER_USER:test-viewer}
+    viewer-password: ${TEST_VIEWER_PASSWORD:test-password}
+    admin-user: ${TEST_ADMIN_USER:test-admin}
+    admin-password: ${TEST_ADMIN_PASSWORD:test-password}
