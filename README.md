@@ -11,6 +11,12 @@
 - Health: https://api.psharipov.de/actuator/health
 - Protected API Endpoint (HTTP Basic Auth required): https://api.psharipov.de/api/v1/devices
 
+## Demo-Zugang (nur lesend)
+
+Swagger-Anfragen können mit folgenden Zugangsdaten getestet werden:
+
+viewer / viewer-demo
+
 ## Repository Highlights
 
 - Produktionsnah auf VPS deployt
@@ -20,7 +26,7 @@
 
 ## Kurzbeschreibung
 
-REST-Backend zur Verwaltung von Netzwerkgeräten in einer IT-/Infrastruktur-Umgebung. Die API stellt CRUD-Endpunkte für Geräte bereit, validiert technische Eingaben (IPv4/IPv6), nutzt datenbankgestützte Migrationen und ist rollenbasiert abgesichert (Viewer/Admin). Das Projekt dient als technisches Portfolio-Projekt für ein Bewerbungsportfolio ausgelegt und orientiert sich an produktionsnahen Standards (Docker, PostgreSQL, Flyway, CI, Health Checks).
+REST-Backend zur Verwaltung von Netzwerkgeräten in einer IT-/Infrastruktur-Umgebung. Die API stellt CRUD-Endpunkte für Geräte bereit, validiert technische Eingaben (IPv4/IPv6), nutzt datenbankgestützte Migrationen und ist rollenbasiert abgesichert (Viewer/Admin). Das Projekt dient als technisches Portfolio-Projekt und orientiert sich an produktionsnahen Standards (Docker, PostgreSQL, Flyway, CI, Health Checks).
 
 ## Projektübersicht
 
