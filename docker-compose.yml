@@ -28,7 +28,7 @@ services:
       VIEWER_PASSWORD: ${VIEWER_PASSWORD}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
-      - "8080:8080"
+      - "127.0.0.1:8080:8080"
 
 volumes:
   postgres_data:
