@@ -139,6 +139,13 @@ In IT-Betrieb/Netzwerkbetrieb müssen Geräteinventare nachvollziehbar gepflegt 
   - `POSTGRES_PASSWORD`
 - Für Docker Compose werden diese Variablen über eine lokale `.env` Datei eingespeist (in `.gitignore`).
 
+**Deployment Security**
+
+- HTTPS-Termination erfolgt über Nginx Reverse Proxy
+- Der Spring-Boot-Service ist nur lokal gebunden (`127.0.0.1:8080`) und nicht direkt öffentlich erreichbar
+- UFW erlaubt ausschließlich Ports `22`, `80` und `443`
+- Fail2ban schützt SSH vor Brute-Force-Angriffen
+
 **Profile (dev / docker / prod)**
 - **Standardprofil (`application.yml`)**: Basiskonfiguration (Flyway aktiv, Actuator Exposure, Security-Properties)
 - **dev (`application-dev.yml`)**: Datenquelle für Entwicklungsbetrieb (PostgreSQL)
