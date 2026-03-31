@@ -145,6 +145,9 @@ In IT-Betrieb/Netzwerkbetrieb müssen Geräteinventare nachvollziehbar gepflegt 
 - Der Spring-Boot-Service ist nur lokal gebunden (`127.0.0.1:8080`) und nicht direkt öffentlich erreichbar
 - UFW erlaubt ausschließlich Ports `22`, `80` und `443`
 - Fail2ban schützt SSH vor Brute-Force-Angriffen
+- Additional HTTP security headers configured via Nginx
+- Rate limiting enabled against request flooding
+- TLS restricted to modern protocols (TLS 1.2 / 1.3)
 
 **Profile (dev / docker / prod)**
 - **Standardprofil (`application.yml`)**: Basiskonfiguration (Flyway aktiv, Actuator Exposure, Security-Properties)
