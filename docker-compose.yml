@@ -24,7 +24,8 @@ services:
         condition: service_healthy
     environment:
       SPRING_PROFILES_ACTIVE: docker
-      ADMIN_PASSWORD: strongadminpassword
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      VIEWER_PASSWORD: ${VIEWER_PASSWORD}
     ports:
       - "8080:8080"
 
