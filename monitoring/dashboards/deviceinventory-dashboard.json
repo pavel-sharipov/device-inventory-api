@@ -105,8 +105,8 @@
       "targets": [
         {
           "editorMode": "builder",
-          "expr": "http_server_requests_seconds_count{method=\"GET\", uri=\"/api/v1/devices\", status=\"200\"}",
-          "legendFormat": "__auto",
+          "expr": "sum(rate(http_server_requests_seconds_count[5m]))",
+          "legendFormat": "",
           "range": true,
           "refId": "A"
         }
