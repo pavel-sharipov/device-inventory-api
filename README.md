@@ -4,6 +4,10 @@
 ![Deploy](https://github.com/pavel-sharipov/device-inventory-api/actions/workflows/deploy.yml/badge.svg)
 ![Java](https://img.shields.io/badge/Java-21-blue)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-brightgreen)
+![Docker](https://img.shields.io/badge/Docker-Containerized-blue)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue)
+![Monitoring](https://img.shields.io/badge/Monitoring-Prometheus%20%7C%20Grafana-orange)
+![Security](https://img.shields.io/badge/Security-Basic%20Auth%20%2B%20Roles-red)
 
 ## Live Demo
 
