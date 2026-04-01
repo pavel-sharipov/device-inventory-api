@@ -106,7 +106,7 @@
         {
           "editorMode": "builder",
           "expr": "sum(rate(http_server_requests_seconds_count[5m]))",
-          "legendFormat": "",
+          "legendFormat": "requests/sec",
           "range": true,
           "refId": "A"
         }
@@ -268,7 +268,7 @@
           },
           "editorMode": "code",
           "expr": "jvm_memory_used_bytes{area=\"heap\",id=\"Tenured Gen\"} / 1024 / 1024",
-          "legendFormat": "__auto",
+          "legendFormat": "Heap MB",
           "range": true,
           "refId": "A"
         }
