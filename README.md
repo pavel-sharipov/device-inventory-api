@@ -17,6 +17,12 @@ Swagger-Anfragen können mit folgenden Zugangsdaten getestet werden:
 
 viewer / viewer-demo
 
+## API Documentation (Swagger UI)
+
+Die API ist über Swagger UI interaktiv testbar und dokumentiert.
+
+![Swagger UI](docs/swagger-ui.png)
+
 ## Repository Highlights
 
 - Produktionsnah auf VPS deployt
