@@ -24,6 +24,19 @@ viewer / viewer-demo
 - Reverse Proxy via HTTPS
 - Continuous Integration und automatisiertes Deployment mit GitHub Actions auf VPS
 
+## Monitoring (Prometheus + Grafana)
+
+Das Projekt enthält zusätzlich ein einfaches Monitoring-Setup mit Prometheus und Grafana.
+
+Erfasste Beispielmetriken:
+- HTTP Request Rate
+- JVM Heap Usage
+- CPU Usage
+
+Grafana Dashboard:
+
+![Grafana Dashboard](docs/grafana-dashboard.png)
+
 ## Kurzbeschreibung
 
 REST-Backend zur Verwaltung von Netzwerkgeräten in einer IT-/Infrastruktur-Umgebung. Die API stellt CRUD-Endpunkte für Geräte bereit, validiert technische Eingaben (IPv4/IPv6), nutzt datenbankgestützte Migrationen und ist rollenbasiert abgesichert (Viewer/Admin). Das Projekt dient als technisches Portfolio-Projekt und orientiert sich an produktionsnahen Standards (Docker, PostgreSQL, Flyway, CI, Health Checks).
