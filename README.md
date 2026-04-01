@@ -105,6 +105,8 @@ In IT-Betrieb/Netzwerkbetrieb müssen Geräteinventare nachvollziehbar gepflegt 
 
 ## Architektur
 
+![Architecture Diagram](docs/architecture-diagram.png)
+
 **Schichtenaufbau (klassische Spring-Schichtenarchitektur)**
 - **Controller**: REST-Endpunkte, Request/Response-Verträge, HTTP-Statuscodes
 - **Service**: Geschäftslogik, Transaktionen, Validations-/Konsistenzlogik
