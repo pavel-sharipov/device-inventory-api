@@ -26,3 +26,9 @@ app:
     viewer-password: ${VIEWER_PASSWORD}
     admin-user: admin
     admin-password: ${ADMIN_PASSWORD}
+
+info:
+  app:
+    name: Device Inventory API
+    version: 1.1
+
