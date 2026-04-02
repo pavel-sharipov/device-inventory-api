@@ -19,6 +19,9 @@ management:
   endpoint:
     health:
       show-details: when_authorized
+  info:
+    env:
+      enabled: true
 
 app:
   security:
